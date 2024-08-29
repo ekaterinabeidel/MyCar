@@ -1,7 +1,9 @@
 package com.example.ekaterinabeidel;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "engineers")
 public class Engineer {

@@ -1,0 +1,226 @@
+{
+	"info": {
+		"_postman_id": "0148e52d-dacd-4df1-9394-7d060a5e31f7",
+		"name": "MyCar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "37559760"
+	},
+	"item": [
+		{
+			"name": "get all cars",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/cars"
+			},
+			"response": []
+		},
+		{
+			"name": "create a car",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "   {\r\n        \"brand\": \"Brand\",\r\n        \"model\": \"Model\",\r\n        \"year\": 2021,\r\n        \"cityOfManufacture\": \"City\",\r\n        \"engineerId\": 2\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/cars"
+			},
+			"response": []
+		},
+		{
+			"name": "update a car",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \r\n        \"brand\": \"Toyota TestUpdateCar\",\r\n        \"model\": \"Camry TestUpdateCar\",\r\n        \"year\": 2021,\r\n        \"cityOfManufacture\": \"Toyota City TestUpdateCar\",\r\n        \"engineerId\": 5\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/cars/10"
+			},
+			"response": []
+		},
+		{
+			"name": "delete a car",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/cars/1"
+			},
+			"response": []
+		},
+		{
+			"name": "get cars by engineer name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cars/searchByEngineerName?engineerName=Hiroshi Kawamura",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cars",
+						"searchByEngineerName"
+					],
+					"query": [
+						{
+							"key": "engineerName",
+							"value": "Hiroshi Kawamura"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get cars by engineer id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cars/searchByEngineerName?engineerName=Hiroshi Kawamura",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cars",
+						"searchByEngineerName"
+					],
+					"query": [
+						{
+							"key": "engineerName",
+							"value": "Hiroshi Kawamura"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get cars by brand and model",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cars/searchByBrandAndModel?brand=Honda&model=Civic",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cars",
+						"searchByBrandAndModel"
+					],
+					"query": [
+						{
+							"key": "brand",
+							"value": "Honda"
+						},
+						{
+							"key": "model",
+							"value": "Civic"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get cars by year greater than ",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cars/searchByYearGreaterThan?year=2019",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cars",
+						"searchByYearGreaterThan"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "2019"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all engineers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/engineers"
+			},
+			"response": []
+		},
+		{
+			"name": "create an engineer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \r\n        \"firstName\": \"Ekaterina\",\r\n        \"lastName\": \"Beidel\",\r\n        \"description\": \"hahaha\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/engineers"
+			},
+			"response": []
+		},
+		{
+			"name": "update an engineer",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"firstName\": \"Kate\",\r\n        \"lastName\": \"Beidel\",\r\n        \"description\": \"hohoho\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/engineers/10"
+			},
+			"response": []
+		},
+		{
+			"name": "delete an engineer",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/engineers/8"
+			},
+			"response": []
+		}
+	]
+}

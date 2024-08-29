@@ -1,4 +1,4 @@
-package com.example.ekaterinabeidel;
+package com.example.ekaterinabeidel.service;
 
 import com.example.ekaterinabeidel.Car;
 import com.example.ekaterinabeidel.repository.CarRepository;

@@ -1,8 +1,7 @@
 package com.example.ekaterinabeidel.controller;
 
 import com.example.ekaterinabeidel.Car;
-import com.example.ekaterinabeidel.CarService;
-import com.example.ekaterinabeidel.repository.CarRepository;
+import com.example.ekaterinabeidel.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,7 +53,7 @@ public class CarController {
     @PostMapping
     public ResponseEntity<Car> createCar(@RequestBody Car car) {
         Car createdCar = carService.save(car);
-        return ResponseEntity.status(HttpStatus.CREATED).body(car);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdCar);
     }
 
     @PutMapping("/{id}")

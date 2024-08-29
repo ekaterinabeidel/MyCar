@@ -45,3 +45,12 @@ SET SQL_SAFE_UPDATES = 1;
 ALTER TABLE cars
 DROP COLUMN engineer_name;
 ```
+
+## Если невозможно удалить инженера:
+
+```sql
+ALTER TABLE cars DROP FOREIGN KEY fk_engineer;
+
+ALTER TABLE cars
+ADD CONSTRAINT fk_engineer FOREIGN KEY (engineer_id) REFERENCES engineers(id) ON DELETE CASCADE;
+```
