@@ -1,6 +1,7 @@
 package com.example.ekaterinabeidel.controller;
 
 import com.example.ekaterinabeidel.Car;
+import com.example.ekaterinabeidel.CarService;
 import com.example.ekaterinabeidel.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,17 +14,18 @@ import java.util.List;
 @RequestMapping("/cars")
 public class CarController {
     @Autowired
-    private CarRepository carRepository;
+    private CarService carService;
+
 
     @GetMapping
     public ResponseEntity<List<Car>> getAllCars() {
-        List<Car> cars = carRepository.findAll();
+        List<Car> cars = carService.getAllCars();
         return ResponseEntity.status(HttpStatus.OK).body(cars);
     }
 
     @GetMapping("/searchByEngineerName")
-    public ResponseEntity<List<Car>> getCarsByEngineerName(@RequestParam Long engineerId){
-        List<Car> cars = carRepository.findByEngineerId(engineerId);
+    public ResponseEntity<List<Car>> getCarsByEngineerId(@RequestParam Long engineerId){
+        List<Car> cars = carService.findByEngineerId(engineerId);
         if (cars.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
@@ -33,7 +35,7 @@ public class CarController {
     @GetMapping("/searchByBrandAndModel")
     public ResponseEntity<List<Car>> getCarsByBrandAndModel(
             @RequestParam String brand,@RequestParam String model){
-        List<Car> cars = carRepository.findByBrandAndModel(brand, model);
+        List<Car> cars = carService.findByBrandAndModel(brand, model);
         if (cars.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
@@ -42,7 +44,7 @@ public class CarController {
 
     @GetMapping("/searchByYearGreaterThan")
     public ResponseEntity<List<Car>> getCarsByYearGreaterThan(@RequestParam int year){
-        List<Car> cars = carRepository.findByYearGreaterThan(year);
+        List<Car> cars = carService.findByYearGreaterThan(year);
         if(cars.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
@@ -51,7 +53,7 @@ public class CarController {
 
     @PostMapping
     public ResponseEntity<Car> createCar(@RequestBody Car car) {
-        Car createdCar = carRepository.save(car);
+        Car createdCar = carService.save(car);
         return ResponseEntity.status(HttpStatus.CREATED).body(car);
     }
 
@@ -59,26 +61,21 @@ public class CarController {
     public ResponseEntity<Car> updateCar(@PathVariable Long id, @RequestBody Car carDetails) {
 //        Car car = carRepository.findById(id).orElseThrow(
 //        ()-> new ResourceNotFoundException("Car not found"));
-        Car car = carRepository.findById(id).orElse(null);
+        Car car = carService.updateCar(id, carDetails);
         if (car == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        car.setBrand(carDetails.getBrand());
-        car.setModel(carDetails.getModel());
-        car.setYear(carDetails.getYear());
-        car.setCityOfManufacture(carDetails.getCityOfManufacture());
-        car.setEngineerId(carDetails.getEngineerId());
-        return ResponseEntity.status(HttpStatus.OK).body(carRepository.save(car));
+        return ResponseEntity.status(HttpStatus.OK).body(carService.save(car));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCar(@PathVariable Long id) {
-        Car car = carRepository.findById(id).orElse(null);
-        if (car == null) {
+        try {
+            carService.delete(id);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        carRepository.delete(car);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
 
