@@ -11,7 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>ekaterinabeidel</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ekaterinabeidel</name>
+	<name>determinately</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
@@ -48,6 +48,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<version>9.0.0</version>
 		</dependency>
 	</dependencies>
 
