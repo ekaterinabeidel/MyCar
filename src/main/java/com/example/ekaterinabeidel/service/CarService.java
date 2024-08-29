@@ -40,7 +40,7 @@ public class CarService {
             car.setBrand(carDetails.getBrand());
             car.setYear(carDetails.getYear());
             car.setCityOfManufacture(carDetails.getCityOfManufacture());
-            car.setEngineerId(carDetails.getEngineerId());
+            car.setEngineer(carDetails.getEngineer());
             return carRepository.save(car);
         }
         return null;

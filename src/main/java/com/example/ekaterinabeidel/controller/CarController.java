@@ -22,7 +22,7 @@ public class CarController {
         return ResponseEntity.status(HttpStatus.OK).body(cars);
     }
 
-    @GetMapping("/searchByEngineerName")
+    @GetMapping("/searchByEngineerId")
     public ResponseEntity<List<Car>> getCarsByEngineerId(@RequestParam Long engineerId){
         List<Car> cars = carService.findByEngineerId(engineerId);
         if (cars.isEmpty()){
@@ -55,7 +55,7 @@ public class CarController {
         Car createdCar = carService.save(car);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCar);
     }
-
+    
     @PutMapping("/{id}")
     public ResponseEntity<Car> updateCar(@PathVariable Long id, @RequestBody Car carDetails) {
 //        Car car = carRepository.findById(id).orElseThrow(

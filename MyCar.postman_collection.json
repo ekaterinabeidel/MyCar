@@ -92,7 +92,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/cars/searchByEngineerName?engineerName=Hiroshi Kawamura",
+					"raw": "http://localhost:8080/cars/searchByEngineerId?engineerId=2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -100,12 +100,12 @@
 					"port": "8080",
 					"path": [
 						"cars",
-						"searchByEngineerName"
+						"searchByEngineerId"
 					],
 					"query": [
 						{
-							"key": "engineerName",
-							"value": "Hiroshi Kawamura"
+							"key": "engineerId",
+							"value": "2"
 						}
 					]
 				}
