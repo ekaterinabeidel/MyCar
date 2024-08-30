@@ -1,10 +1,11 @@
 package com.example.ekaterinabeidel.controller;
 
-import com.example.ekaterinabeidel.Engineer;
+import com.example.ekaterinabeidel.dto.EngineerDTO;
+import com.example.ekaterinabeidel.entity.Engineer;
 import com.example.ekaterinabeidel.service.EngineerService;
+import com.example.ekaterinabeidel.util.EngineerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,24 +18,24 @@ public class EngineerController {
     private EngineerService engineerService;
 
     @GetMapping
-    public ResponseEntity<List<Engineer>> getAllEngineers(){
-        List<Engineer> engineers = engineerService.findAllEngineers();
+    public ResponseEntity<List<EngineerDTO>> getAllEngineers(){
+        List<EngineerDTO> engineers = engineerService.findAllEngineers();
         return ResponseEntity.status(HttpStatus.OK).body(engineers);
     }
 
     @PostMapping
-    public ResponseEntity<Engineer> createEngineer(@RequestBody Engineer engineer){
-        Engineer createdEngineer = engineerService.save(engineer);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdEngineer);
+    public ResponseEntity<EngineerDTO> createEngineer(@RequestBody EngineerDTO engineerDTO){
+        EngineerDTO createdEngineerDTO = engineerService.save(engineerDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdEngineerDTO);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Engineer> updateEngineer(@PathVariable Long id, @RequestBody Engineer engineer){
-        Engineer updatedEngineer = engineerService.updateEngineers(id, engineer);
-        if (updatedEngineer == null){
+    public ResponseEntity<EngineerDTO> updateEngineer(@PathVariable Long id, @RequestBody EngineerDTO engineerDTO){
+        EngineerDTO updatedEngineerDTO = engineerService.updateEngineers(id, engineerDTO);
+        if (updatedEngineerDTO == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        return ResponseEntity.status(HttpStatus.OK).body(updatedEngineer);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedEngineerDTO);
     }
 
     @DeleteMapping("/{id}")

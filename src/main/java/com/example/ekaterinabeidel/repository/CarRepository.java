@@ -1,6 +1,6 @@
 package com.example.ekaterinabeidel.repository;
 
-import com.example.ekaterinabeidel.Car;
+import com.example.ekaterinabeidel.entity.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

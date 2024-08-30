@@ -1,4 +1,4 @@
-package com.example.ekaterinabeidel;
+package com.example.ekaterinabeidel.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
