@@ -1,14 +1,18 @@
 package com.example.ekaterinabeidel.service;
 
-import com.example.ekaterinabeidel.dto.EngineerDTO;
+import com.example.ekaterinabeidel.dto.EngineerCreateDTO;
+import com.example.ekaterinabeidel.dto.EngineerResponseDTO;
+import com.example.ekaterinabeidel.dto.EngineerUpdateDTO;
 import com.example.ekaterinabeidel.entity.Engineer;
+import com.example.ekaterinabeidel.exception.CarNotFoundException;
+import com.example.ekaterinabeidel.exception.EngineerNotFoundException;
 import com.example.ekaterinabeidel.repository.EngineerRepository;
 import com.example.ekaterinabeidel.util.EngineerMapper;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class EngineerService {
@@ -16,28 +20,31 @@ public class EngineerService {
     @Autowired
     private EngineerRepository engineerRepository;
 
-    public List<EngineerDTO> findAllEngineers() {
+    public List<EngineerResponseDTO> findAllEngineers() {
         return EngineerMapper.mapToEngineerDTOList(engineerRepository.findAll());
     }
 
-    public EngineerDTO save(EngineerDTO engineerDTO) {
-
-        return EngineerMapper.mapToEngineerDTO(engineerRepository.save(EngineerMapper.mapToEntity(engineerDTO)));
+    public EngineerResponseDTO save(EngineerCreateDTO engineerCreateDTO) {
+        Engineer engineer = EngineerMapper.mapEngineerCreateDTOToEntity(engineerCreateDTO);
+        Engineer createdEngineer = engineerRepository.save(engineer);
+        return EngineerMapper.mapToEngineerResponseDTO(createdEngineer);
     }
 
-    public EngineerDTO updateEngineers(Long id, EngineerDTO engineerDTO) {
-        Optional<Engineer> optionalEngineer = engineerRepository.findById(id);
-        if (optionalEngineer.isPresent()) {
-            Engineer updatedEngineers = optionalEngineer.get();
-            updatedEngineers.setFirstName(engineerDTO.getFirstName());
-            updatedEngineers.setLastName(engineerDTO.getLastName());
-            updatedEngineers.setDescription(engineerDTO.getDescription());
-            return EngineerMapper.mapToEngineerDTO(updatedEngineers);
-        }
-        return null;
+    public EngineerResponseDTO updateEngineers(Long id, EngineerUpdateDTO engineerUpdateDTO) {
+        Engineer updatedEngineer = engineerRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Engineer with ID " + id + " not found")
+        );
+        updatedEngineer.setFirstName(engineerUpdateDTO.getFirstName());
+        updatedEngineer.setLastName(engineerUpdateDTO.getLastName());
+        updatedEngineer.setDescription(engineerUpdateDTO.getDescription());
+        return EngineerMapper.mapToEngineerResponseDTO(updatedEngineer);
     }
 
     public void deleteEngineer(Long id) {
-        engineerRepository.deleteById(id);
+        if (!engineerRepository.existsById(id)){
+            throw new EngineerNotFoundException("Engineer with ID " + id + " not found");
+        } else {
+            engineerRepository.deleteById(id);
+        }
     }
 }

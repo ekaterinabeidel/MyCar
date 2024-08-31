@@ -61,32 +61,6 @@
 			"response": []
 		},
 		{
-			"name": "get cars by engineer name",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/cars/searchByEngineerName?engineerName=Hiroshi Kawamura",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"cars",
-						"searchByEngineerName"
-					],
-					"query": [
-						{
-							"key": "engineerName",
-							"value": "Hiroshi Kawamura"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "get cars by engineer id",
 			"request": {
 				"method": "GET",
