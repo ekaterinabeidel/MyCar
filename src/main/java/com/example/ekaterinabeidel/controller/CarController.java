@@ -22,7 +22,7 @@ public class CarController {
 
     @Operation(
             summary = "Получить все автомобили",
-            description = "Возвращает список всех автомобилей с подробной информацией.")
+            description = "Возвращает список всех автомобилей с подробной информацией")
     @ApiResponse(responseCode = "200", description = "Успешное получение списка автомобилей")
     @GetMapping
     public ResponseEntity<List<CarResponseDTO>> getAllCars() {
@@ -48,7 +48,7 @@ public class CarController {
 
     @Operation(
             summary = "Получить автомобили по бренду и модели",
-            description = "Возвращает список автомобилей по заданным параметрам бренда и модели.")
+            description = "Возвращает список автомобилей по заданным параметрам бренда и модели")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Успешное получение списка автомобилей"),
             @ApiResponse(responseCode = "404", description = "Автомобили с указанными брендом и моделью не найдены")
@@ -65,7 +65,7 @@ public class CarController {
 
     @Operation(
             summary = "Получить автомобили по году выпуска",
-            description = "Возвращает список автомобилей, у которых год выпуска больше указанного.")
+            description = "Возвращает список автомобилей, у которых год выпуска больше указанного")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Успешное получение списка автомобилей"),
             @ApiResponse(responseCode = "404", description = "Автомобили с годом выпуска больше указанного не найдены")
@@ -81,7 +81,7 @@ public class CarController {
 
     @Operation(
             summary = "Создать новый автомобиль",
-            description = "Создает новый автомобиль и возвращает его подробную информацию.")
+            description = "Создает новый автомобиль и возвращает его подробную информацию")
     @ApiResponse(responseCode = "201", description = "Автомобиль успешно создан")
     @PostMapping
     public ResponseEntity<CarResponseDTO> createCar(@RequestBody CarCreateDTO carCreateDTO) {
@@ -91,7 +91,7 @@ public class CarController {
 
     @Operation(
             summary = "Обновить информацию об автомобиле",
-            description = "Обновляет информацию об автомобиле по его идентификатору.")
+            description = "Обновляет информацию об автомобиле по его идентификатору")
     @ApiResponse(responseCode = "200", description = "Информация об автомобиле успешно обновлена")
     @ApiResponse(responseCode = "404", description = "Автомобиль с указанным идентификатором не найден")
     @PutMapping("/{id}")
@@ -102,7 +102,7 @@ public class CarController {
 
     @Operation(
             summary = "Удалить автомобиль",
-            description = "Удаляет автомобиль по его идентификатору.")
+            description = "Удаляет автомобиль по его идентификатору")
     @ApiResponse(responseCode = "204", description = "Автомобиль успешно удален")
     @ApiResponse(responseCode = "404", description = "Автомобиль с указанным идентификатором не найден")
     @DeleteMapping("/{id}")
